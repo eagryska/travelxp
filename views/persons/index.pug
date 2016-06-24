@@ -1,0 +1,47 @@
+extends ../shared/template
+block content
+  h1 Client List
+  a(href='/person/new')
+    button.btn.btn-primary= 'New Client'
+  table.table.table-striped
+      thead
+        tr
+          th Name
+          th Age
+          th Gender
+          th Money
+          th Photo
+          th Cities
+      tbody
+        each person in persons
+          tr(style='background-color: grey' )
+            td
+              a(href='/person/' + person._id + '/edit')= person.name
+            td= person.age
+            td= person.gender
+            td= person.money
+            td= person.photo
+            td= person.cities
+
+        //-   tr(style='background-color:' + task.priority.color)
+        //-     td
+        //-       a.btn.btn-success.btn-xs(href='/tasks/' + task.id + '/edit')
+        //-         i.fa.fa-cog.fa-fw
+        //-     td
+        //-       form(action='/tasks/' + task.id + '/complete', method='post')
+        //-         button.btn.btn-primary.btn-xs(type='submit')
+        //-           i.fa.fa-flash.fa-fw
+        //-     td
+        //-       form(action='/tasks/' + task.id + '/delete', method='post')
+        //-         button.btn.btn-danger.btn-xs(type='submit')
+        //-           i.fa.fa-trash.fa-fw
+        //-     td= task.name
+        //-     td= task.due
+        //-     td= task.priority.name
+        //-     td= task.category
+        //-     td
+        //-       if task.isComplete
+        //-         i.fa.fa-check-square-o.fa-fw
+        //-       else
+        //-         i.fa.fa-square-o.fa-fw
+        //-     td= task.createdAt
