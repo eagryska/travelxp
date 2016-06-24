@@ -1,0 +1,36 @@
+extends ../shared/template
+block content
+  if person
+    h1 Edit Client
+  else
+    h1 New Client
+
+  .row
+      .col-xs-6
+        form(action= person ? '/person/' + person.id : '/person', method='post')
+          .form-group
+            label Name
+            input.form-control(type='text', name='name', value=person && person.name)
+          .form-group
+            label Age
+            input.form-control(type='text', name='age', value=person && person.age)
+          .form-group
+            label Gender
+            input.form-control(type='text', name='gender', value=person && person.gender)
+          .form-group
+            label Money
+            input.form-control(type='text', name='money', value=person && person.money)
+          if person
+            .form-group
+              label Cities
+              ul.list-group
+                each city in cities
+                  li.list-group-item
+                    a(href='/city/show/' + city.name)= city.name
+                  //- select.form-control(name='cities')
+                //-   each city in cities
+                //-     option= city
+                    //- option(selected=person && (city._id === person.category))= category.name
+          .form-group
+            button.btn.btn-primary(type='submit')= person ? 'Update' : 'Create'
+      .col-xs-6
