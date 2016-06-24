@@ -1,0 +1,18 @@
+extends ../shared/template
+block content
+  h1 Add City
+
+  .row
+    .col-xs-6
+      form(action='/city/add' method='post')
+        .form-group
+          label Name
+          input.form-control(type='text', name='name' )
+        .form-group
+          label Amount
+          input.form-control(type='number', name='amount' )
+        .form-group
+          label Balance
+          input.form-control(type='number', name='balance' )
+        .form-group
+          button.btn.btn-primary(type='submit') Create

@@ -1,0 +1,83 @@
+extends ../shared/template
+block content
+
+  h1#cityName= city.name
+  h4= "Amount: $" + city.amount
+  h4= "Balance: $" + city.balance
+  #weather
+    h2 Weather
+
+  #yelp
+    h2 Yelp Reviews
+    #bars
+      h3 Bars
+      table.table.table-striped
+        tr
+          th Name
+          th Rating
+          th Review Preview
+          th Phone Number
+          th Image
+        each item in bars
+          tr
+            td= item.name
+            td
+              img(src=item.rating_img_url_small)
+            td= item.snippet_text
+            td= item.display_phone
+            td
+              img(src=item.snippet_image_url)
+    #sports
+      h3 Sporting Events
+      table.table.table-striped
+        tr
+          th Name
+          th Rating
+          th Review Preview
+          th Phone Number
+          th Image
+        each item in sports
+          tr
+            td= item.name
+            td
+              img(src=item.rating_img_url_small)
+            td= item.snippet_text
+            td= item.display_phone
+            td
+              img(src=item.snippet_image_url)
+    #food
+      h3 Food
+      table.table.table-striped
+        tr
+          th Name
+          th Rating
+          th Review Preview
+          th Phone Number
+          th Image
+        each item in food
+          tr
+            td= item.name
+            td
+              img(src=item.rating_img_url_small)
+            td= item.snippet_text
+            td= item.display_phone
+            td
+              img(src=item.snippet_image_url)
+    #music
+      h3 Music
+      table.table.table-striped
+        tr
+          th Name
+          th Rating
+          th Review Preview
+          th Phone Number
+          th Image
+        each item in music
+          tr
+            td= item.name
+            td
+              img(src=item.rating_img_url_small)
+            td= item.snippet_text
+            td= item.display_phone
+            td
+              img(src=item.snippet_image_url)

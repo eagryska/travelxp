@@ -1,3 +1,23 @@
 extends ../shared/template
 block content
-  h1 City
+  h1 Cities
+  #cityList
+    table.table.table-striped
+      thead
+        tr
+          th Name
+          th Amount
+          th People
+          th Balance
+      tbody
+        each city in cities
+          tr
+            td
+              a(href=`/city/show/${city.name}`)= city.name
+            td= city.amount
+            td
+              each person in city.people
+                // populate(person).name
+            td= city.balance
+  a(href='/city/new')
+    button.btn.btn-success Add New City
