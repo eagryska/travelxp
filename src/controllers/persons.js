@@ -2,6 +2,8 @@
 
 import express from 'express';
 import Person from '../models/person';
+// import City from '../models/city';
+import Country from '../models/country';
 const router = module.exports = express.Router();
 
 router.get('/', (req, res) => {
@@ -9,7 +11,7 @@ router.get('/', (req, res) => {
     // persons[0].populate('cityId');
     // console.log( 'populate:', persons[0].cityId.Name );
     res.render('persons/index', { persons });
-  });
+  }).populate('cityId');
 });
 router.get('/new', (req, res) => {
   // const countries = Country.find();
@@ -32,10 +34,17 @@ router.post('/', (req, res) => {
 
 router.get('/:id/edit', (req, res) => {
   // const cs = Category.find();
-  const cities = [{ id: '1', name: 'Chicago' }, { id: '2', name: 'La' }];
+  // const cities = [{ id: '1', name: 'Chicago' }, { id: '2', name: 'La' }];
   Person.findById(req.params.id, (err, person) => {
-    res.render('persons/new', { person, cities });
-  });
+    // console.log('after populate:', person);
+    // const cities = person.cityId;
+    // console.log('cities from person:', cities);
+    Country.find((err2, countries) => {
+      res.render('persons/new', { person, countries });
+    // res.render('persons/new', { person });
+    // res.render('persons/new', { person, cities });
+    });
+  }).populate('cityId');
 });
 
 router.post('/:id', (req, res) => {

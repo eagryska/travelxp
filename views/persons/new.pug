@@ -1,12 +1,11 @@
 extends ../shared/template
 block content
-  if person
-    h1 Edit Client
-  else
-    h1 New Client
-
   .row
       .col-xs-6
+        if person
+          h1 Edit Client
+        else
+          h1 New Client
         form(action= person ? '/person/' + person.id : '/person', method='post')
           .form-group
             label Name
@@ -22,15 +21,24 @@ block content
             input.form-control(type='text', name='money', value=person && person.money)
           if person
             .form-group
-              label Cities
+              label Cities they have visited
               ul.list-group
-                each city in cities
+                each city in person.cityId
                   li.list-group-item
                     a(href='/city/show/' + city.name)= city.name
-                  //- select.form-control(name='cities')
-                //-   each city in cities
-                //-     option= city
-                    //- option(selected=person && (city._id === person.category))= category.name
           .form-group
             button.btn.btn-primary(type='submit')= person ? 'Update' : 'Create'
       .col-xs-6
+        if person
+          h1 New Trip
+          .form-group
+            label Country
+            select.form-control(name='country')
+              each country in countries
+                option= country.name
+            label City
+            select.form-control(name='city')
+            label Cost
+            input.form-control(type='text', name='cost', value=0)
+            .form-group
+            button.btn.btn-success(type='submit')= 'Schedule Trip'

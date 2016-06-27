@@ -1,3 +1,43 @@
 extends ../shared/template
 block content
-  h1 Country
+  h1 Established Country List
+  table.table.table-striped
+      thead
+        tr
+          th Name
+          th Photos
+          th Cities
+          th Balance
+      tbody
+        each country in countries
+          tr
+            td
+              a(href='/country/' + country._id + '/edit')= country.name
+            td= country.photos
+            td= country.cities
+            td= country.balance
+  a(href='/country/new')
+    button.btn.btn-primary= 'New Country'
+
+        //-   tr(style='background-color:' + task.priority.color)
+        //-     td
+        //-       a.btn.btn-success.btn-xs(href='/tasks/' + task.id + '/edit')
+        //-         i.fa.fa-cog.fa-fw
+        //-     td
+        //-       form(action='/tasks/' + task.id + '/complete', method='post')
+        //-         button.btn.btn-primary.btn-xs(type='submit')
+        //-           i.fa.fa-flash.fa-fw
+        //-     td
+        //-       form(action='/tasks/' + task.id + '/delete', method='post')
+        //-         button.btn.btn-danger.btn-xs(type='submit')
+        //-           i.fa.fa-trash.fa-fw
+        //-     td= task.name
+        //-     td= task.due
+        //-     td= task.priority.name
+        //-     td= task.category
+        //-     td
+        //-       if task.isComplete
+        //-         i.fa.fa-check-square-o.fa-fw
+        //-       else
+        //-         i.fa.fa-square-o.fa-fw
+        //-     td= task.createdAt

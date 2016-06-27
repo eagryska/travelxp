@@ -1,0 +1,33 @@
+extends ../shared/template
+block content
+  if country
+    h1 Edit Country
+  else
+    h1 New Country
+
+  .row
+      .col-xs-6
+        form(action= country ? '/country/' + country.id : '/country', method='post')
+          .form-group
+            label Name
+            input.form-control(type='text', name='name', value=country && country.name)
+          .form-group
+            label Photos
+            input.form-control(type='text', name='photos', value=country && country.photos)
+          if country
+            .form-group
+              label Cities
+              ul.list-group
+                each city in cities
+                  li.list-group-item
+                    a(href='/city/show/' + city.name)= city.name
+                  //- select.form-control(name='cities')
+                //-   each city in cities
+                //-     option= city
+                    //- option(selected=person && (city._id === person.category))= category.name
+          .form-group
+            label Balance
+            input.form-control(type='text', name='balance', value=country && country.balance)
+          .form-group
+            button.btn.btn-primary(type='submit')= country ? 'Update' : 'Create'
+      .col-xs-6
